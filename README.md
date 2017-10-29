@@ -27,7 +27,7 @@ Some details
   Cfg will flash a LED a couple of seconds, and the user can press a button during that period.
   By default, it is the blue LED on the ESP8266 module, and the flash button on the NodeMCU board.
   When the button is pressed at startup, Cfg is said to be in _config mode_.
-  If that happens, Cfg will prevent you app from running.
+  If that happens, Cfg will prevent your app from running.
   Instead it will start a WiFi access point, start a webserver, and server a page that allows any browser to edit the fields.
   After a reset, normal flows starts again.
 - "Correct integration" means (1) Cfg should be at the head of `setup()`. For example
@@ -74,7 +74,9 @@ Some details
   
   
 ## Details
-See [Cfg.h](src/Cfg.h) for details.
+See [Cfg.h](src/Cfg.h) for detailed dopcumentation
+
+## Examples
 There are [examples](examples)
 - The application [cfgtime](examples/cfgtime) has ssid, password, a webserver and a refresh time as configuration parameters.  
   On startup, it connects the the configured ssid/password.  
@@ -84,3 +86,4 @@ There are [examples](examples)
   Then, it starts a webserver. Each request (URL) is printed on the console.
   
 
+(end of doc)
