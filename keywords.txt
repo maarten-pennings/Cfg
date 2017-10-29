@@ -1,0 +1,6 @@
+Cfg	KEYWORD1
+check	KEYWORD2
+cfgmode	KEYWORD2
+setup	KEYWORD2
+loop KEYWORD2
+getval	KEYWORD2
