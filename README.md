@@ -47,7 +47,7 @@ Some details
   }
   ```
 - "Correct integration" means (2) Cfg should be at the head of `loop()`. For example
-  ```diff
+  ```cpp
   void loop() {
     // If the config button was pressed, do the loop of the Cfg library (instead of the app's loop).
     if( cfg.cfgmode() ) { cfg.loop(); return; }
