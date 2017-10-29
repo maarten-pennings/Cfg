@@ -31,7 +31,7 @@ Some details
   Instead it will start a WiFi access point, start a webserver, and server a page that allows any browser to edit the fields.
   After a reset, normal flows starts again.
 - "Correct integration" means (1) Cfg should be at the head of `setup()`. For example
-  ```
+  ```cpp
   void setup() {
     // Some steps before Cfg will check for the button is allowed ...
     Serial.begin(115200);
@@ -47,7 +47,7 @@ Some details
   }
   ```
 - "Correct integration" means (2) Cfg should be at the head of `loop()`. For example
-  ```
+  ```diff
   void loop() {
     // If the config button was pressed, do the loop of the Cfg library (instead of the app's loop).
     if( cfg.cfgmode() ) { cfg.loop(); return; }
@@ -57,12 +57,12 @@ Some details
   }
   ```
 - Of course you'll need an instance of the Cfg class
-  ```
+  ```cpp
     Cfg cfg("CfgDemo", CfgFieldsDefault );
   ```
   The `CfgFieldsDefault` is an array of fields, this default one contains a field for the ssid and the password.  
   Your time application needs more, for example
-  ```
+  ```cpp
   NvmField CfgTimeFields[] = {
     {"ssid"    , "MySSID"       , 32, "The ssid of the wifi network this device should connect to." },
     {"password", "MyPassword"   , 32, "The password of the wifi network this device should connect to."},
