@@ -81,7 +81,7 @@ There are [examples](examples)
 - The application [cfgtime](examples/cfgtime) has ssid, password, a webserver and a refresh time as configuration parameters.  
   On startup, it connects the the configured ssid/password.  
   Then, every refresh time, it gets the timestamp of the index page of the webserver, and prints that time on the console.
-- The application [cfgmsg](examples/cfgtime) has ssid, password as configuration parameters.  
+- The application [cfgmsg](examples/cfgmsg) has ssid, password as configuration parameters.  
   On startup, it connects the the configured ssid/password.  
   Then, it starts a webserver. Each request (URL) is printed on the console.
   
