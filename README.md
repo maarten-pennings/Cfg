@@ -58,7 +58,7 @@ Some details
   ```
 - Of course you'll need an instance of the Cfg class
   ```cpp
-    Cfg cfg("CfgDemo", CfgFieldsDefault );
+    Cfg cfg( "CfgDemo", CfgFieldsDefault );
   ```
   The `CfgFieldsDefault` is an array of fields, this default one contains a field for the ssid and the password.  
   Your time application needs more, for example
@@ -74,7 +74,7 @@ Some details
   
   
 ## Details
-See [Cfg.h](src/Cfg.h) for detailed dopcumentation
+See [Cfg.h](src/Cfg.h) for detailed documentation
 
 ## Examples
 There are [examples](examples)
