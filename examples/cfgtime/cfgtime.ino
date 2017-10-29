@@ -36,31 +36,33 @@ Let's configure (the ssid, password, etc)
    | Cfg: Then browse to any page (e.g. '10.10.10.10')
  - The led wil now flash much slower; the ESP8266 is now access point with web browser and DNS server;
    as long as the server is serving pages the led will falsh slowly.
- - In a PC or mobile phone, connect to new WiFi network (there is no password)
- - Enter any url e.g. cfg.com, the DNS server will route to the built-in webserver
+ - In a PC or mobile phone, connect to new WiFi network (open network; no password required)
+   The ssid is something like CfgTime-BAD12C.
+ - Enter any url e.g. cfg.com or 10.10.10.10, the DNS server will route to the built-in webserver
    (do not enter a simple string like 'cfg', because the Chrome will search instead of doing DNS)
  - The configuration page will be displayed in the web browser.
+   If the bottom of the page does not show 'Save' reload.
  - Edit the 'ssid' and 'password' to match the available Access Point.
-   Optionaly enter another 'server' or the poll 'interval'
- - Press 'Save'; the configuration will be saved to eeprom and the device will be restarted
+   Optionaly enter another 'server' (www.google.com) or the poll 'interval' (300).
+ - Press 'Save'; the configuration will be saved to EEPROM and the device will be restarted
    The Serial output will look like this, but with different ssid/password
    | Cfg: Web browser requests '/', response config page
    | Cfg: Web browser requests '/?ssid=MySSID&password=MyPassword&server=www.google.nl&interval=300', response submit page
-   | Cfg: Saved: 'ssid' = 'MySSID'
-   | Cfg: Saved: 'password' = 'MyPassword'
+   | Cfg: Saved: 'ssid' = 'MyRealSSID'
+   | Cfg: Saved: 'password' = 'MyRealPassword'
    | Cfg: Saved: 'server' = 'www.google.nl'
    | Cfg: Saved: 'interval' = '300'
    | Cfg: Restart will now be invoked...
 
-The clock application is now configured (fields are saved persistently in eeprom).
+The clock application is now configured (fields are saved persistently in EEPROM).
  - After the boot, the led flashes fast again, this time do not press the button.
- - The clock app will start, connecting to the specified access point
+ - The clock app will start, connecting to the specified access point.
  - It will ask the specified 'server' for the time and display that.
  - Every 300 seconds (or other value if 'interval' is changed) a new time is printed
    | Welcome to CfgTime
    | 
    | Cfg: Press button on pin 0 to enter configuration mode
-   | Connecting to GuestFamPennings .... connected
+   | Connecting to MyRealSSID .... connected
    | IP is 192.168.179.73
    | Time obtained from 'www.google.nl' every 300 seconds
    | 
