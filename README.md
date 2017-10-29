@@ -56,8 +56,23 @@ Some details
     ...
   }
   ```
-
-
+- Of course you'll need an instance of the Cfg class
+  ```
+    Cfg cfg("CfgDemo", CfgFieldsDefault );
+  ```
+  The `CfgFieldsDefault` is an array of fields, this default one contains a field for the ssid and the password.  
+  Your time application needs more, for example
+  ```
+  NvmField CfgTimeFields[] = {
+    {"ssid"    , "MySSID"       , 32, "The ssid of the wifi network this device should connect to." },
+    {"password", "MyPassword"   , 32, "The password of the wifi network this device should connect to."},
+    {"server"  , "www.google.nl", 32, "The webserver that will be asked for time (http head request)."},
+    {"interval", "300"          , 10, "The time (in seconds) between webserver requests for time."},
+    {0         , 0              ,  0, 0},  
+  };
+  ```
+  
+  
 ## Details
 See [Cfg.h](src/Cfg.h) for details.
 There are [examples](examples)
