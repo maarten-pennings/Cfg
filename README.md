@@ -28,8 +28,8 @@ Some details
   By default, it is the blue LED on the ESP8266 module, and the flash button on the NodeMCU board.
   When the button is pressed at startup, Cfg is said to be in _config mode_.
   If that happens, Cfg will prevent your app from running.
-  Instead it will start a WiFi access point, start a webserver, and server a page that allows any browser to edit the fields.
-  After a reset, normal flows starts again.
+  Instead it will start a WiFi access point, start a webserver, and serve out a page that allows any browser to edit the fields.
+  After a reset, the normal program flow starts again.
 - "Correct integration" means (1) Cfg should be at the head of `setup()`. For example
   ```cpp
   void setup() {
