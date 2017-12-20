@@ -7,9 +7,9 @@ Cfg is a library that adds a list of fields (key-value pairs) to an
 application, and it implements persistent storage and editing of 
 these fields.
 
-As a concrete example, think of an app that gets the time from some server and then displays is; a "web synced clock".
+As a concrete example, think of an app that gets the time from some http server and then displays it; a "web synced clock".
 You write the program, flash it to an ESP8266, and add a display and a battery.
-You 3D print a nice case, and put the flashed ESP8266 and display in it.
+You 3D print a nice case, and put the flashed ESP8266, display and bettary in it.
 Then you give it as a present to a friend.
 
 Your friend needs a way to configure her SSID, her password, and maybe even the URL of her favorite http server.
