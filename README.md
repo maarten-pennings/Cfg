@@ -95,7 +95,7 @@ Cfg: Press button on pin 0 to enter configuration mode
 Connecting to MySSID .........................
 ```
 
-Dot will keep om appearing, while the application tries to connect to `MySSID` (using `MyPassword`).
+Dots will keep om appearing, while the application tries to connect to `MySSID` (using `MyPassword`).
 Since the SSID in my home is `GuestPennings` (using `no_password`), this will not succeed.
 We will have to configure the application.
 
@@ -129,19 +129,21 @@ Cfg: web: '/connecttest.txt' not found
 ```
 
 The browser shows the configuration page with defaults
-~[The configuration page with defaults](cfgtime1.png)
 
-Fill out the correct SSID and password
+![The configuration page with defaults](cfgtime1.png)
 
-~[Correct SSID and password filled out](cfgtime2.png)
+Fill out the correct SSID and password (the default server and poll interval are left as-is)
+
+![Correct SSID and password filled out](cfgtime2.png)
 
 and press save
 
-~[Saved the configuration](cfgtime3.png)
+![Saved the configuration](cfgtime3.png)
 
 The serial port shows that after saving, the CfgTime app reboots
 
 ```
+Cfg: web: '/connecttest.txt' not found
 Cfg: web: '/connecttest.txt' not found
 Cfg: web: '/save'
 Cfg: Saved: 'ssid' = 'GuestPennings'
@@ -151,7 +153,7 @@ Cfg: Saved: 'interval' = '300'
 Cfg: Restart will now be invoked...
 ```
 
-This time, we do not press the configuration button
+This time, we do not press the configuration button, and the app starts it time getting application.
 
 ```
 Welcome to CfgTime
@@ -164,6 +166,7 @@ Time obtained from 'www.google.nl' every 300 seconds
 Date: Tue, 26 Dec 2017 11:08:47 GMT
 Date: Tue, 26 Dec 2017 11:13:47 GMT
 Date: Tue, 26 Dec 2017 11:18:47 GMT
+Date: Tue, 26 Dec 2017 11:23:47 GMT
 ```
 
 (end of doc)
