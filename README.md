@@ -15,7 +15,7 @@ Then you give it as a present to a friend.
 Your friend needs a way to configure her SSID, her password, and maybe even the URL of her favorite http server (where to get the time from).
 This _configuration_ is where the Cfg library helps.
 
-Some details 
+## Some details 
 - Cfg stores fields persistently in EEPROM.  
   Example of fields: ssid, password, server url.
 - The clock app you write can retrieve these values.  
@@ -72,9 +72,9 @@ Some details
   };
   ```
   
-  
-## Details
+## Even more details
 See [Cfg.h](src/Cfg.h) for detailed documentation
+
 
 ## Examples
 There are [examples](examples)
@@ -85,5 +85,85 @@ There are [examples](examples)
   On startup, it connects to WiFi using the configured ssid/password.  
   Then, it starts a webserver. Each request (URL) send to the server is printed on the console.
   
+
+## CfgTime in detail
+When the CfgTime application is flashed and started it will have the following output over serial.
+```
+Welcome to CfgTime
+
+Cfg: Press button on pin 0 to enter configuration mode
+Connecting to MySSID .........................
+```
+
+Dot will keep om appearing, while the application tries to connect to `MySSID` (using `MyPassword`).
+Since the SSID in my home is `GuestPennings` (using `no_password`), this will not succeed.
+We will have to configure the application.
+
+We press the "reset" button first
+
+```
+Welcome to CfgTime
+
+Cfg: Press button on pin 0 to enter configuration mode
+```
+
+and then have about 3 seconds to press the "flash" button on the NodeMCU board.
+
+```
+Cfg: Entering configuration mode
+Cfg: Join WiFi 'CfgTime-F1A251' (open)
+Cfg: Then browse to any page (e.g. '10.10.10.10')
+```
+
+Next, open your smartphone or laptop, connect to access point `CfgTime-F1A251`, fire
+up the browser and type any address. The CfgTime app will serve its configuration page.
+Note that the browser tries to get a `favicon.ico`, and the operating system (?) tries
+to reach the internet `connecttest.txt` (which fails through this access point).
+
+```
+Cfg: web: '/' (config)
+Cfg: web: '/favicon.ico' not found
+Cfg: web: '/connecttest.txt' not found
+Cfg: web: '/connecttest.txt' not found
+Cfg: web: '/connecttest.txt' not found
+```
+
+The browser shows the configuration page with defaults
+~[The configuration page with defaults](cfgtime1.png)
+
+Fill out the correct SSID and password
+
+~[Correct SSID and password filled out](cfgtime2.png)
+
+and press save
+
+~[Saved the configuration](cfgtime3.png)
+
+The serial port shows that after saving, the CfgTime app reboots
+
+```
+Cfg: web: '/connecttest.txt' not found
+Cfg: web: '/save'
+Cfg: Saved: 'ssid' = 'GuestPennings'
+Cfg: Saved: 'password' = 'no_password'
+Cfg: Saved: 'server' = 'www.google.nl'
+Cfg: Saved: 'interval' = '300'
+Cfg: Restart will now be invoked...
+```
+
+This time, we do not press the configuration button
+
+```
+Welcome to CfgTime
+
+Cfg: Press button on pin 0 to enter configuration mode
+Connecting to GuestPennings .......... connected
+IP is 192.168.179.52
+Time obtained from 'www.google.nl' every 300 seconds
+
+Date: Tue, 26 Dec 2017 11:08:47 GMT
+Date: Tue, 26 Dec 2017 11:13:47 GMT
+Date: Tue, 26 Dec 2017 11:18:47 GMT
+```
 
 (end of doc)
