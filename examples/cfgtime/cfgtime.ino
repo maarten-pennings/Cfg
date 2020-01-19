@@ -139,7 +139,7 @@ String gettime(bool print) {
     if( print ) Serial.printf("  Sending request\n");
     client.print(String("HEAD / HTTP/1.1\r\n")+
                  "Host: "+cfg.getval("server")+"\r\n" +
-                 "Connection: close\r\n" +
+                 "Connection: Keep-Alive\r\n" +
                  "\r\n"
                 );
     if( print ) Serial.printf("  Response\n");
