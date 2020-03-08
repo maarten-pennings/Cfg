@@ -189,6 +189,8 @@ static String head(const char * name) {
       div.sub{background:#0fad00; margin:10px; padding:10px; border:solid black 1px;}
       input{background:#8cc700; padding:3px; border:solid black 1px;}
       .but{background:#00a3c7; padding:5px; text-decoration:none; color:black; font-size:small; border:solid black 1px; border-radius:8px;}
+      th{text-align:left;}
+      small{font-style:italic;}
     </style>
     
 )===="; // http://www.tigercolor.com/color-lab/color-theory/color-harmonies.htm
@@ -205,8 +207,8 @@ static String body1(const char * name, const char * task) {
 static String body2(void) {
   return R"====(
     <div class='sub' style='text-align:right'>
-      <a class='but' href='/restart'>Restart</a>
-      <a class='but' href='/'>Configure</a>
+      <a class='but' href='/restart' title='Restart without save'>Restart</a>
+      <a class='but' href='/' title='Reload configuration without save'>Configure</a>
     </div>
     
   </body>
@@ -221,26 +223,33 @@ void Cfg::_handle_config(void) {
  
   NvmField * field = _fields;
   while( field->name!=0 ) {
-    char val[NVM_MAX_LENZ];
-    _nvm()->get(field->name,val);
-    body += String("") +
-      "        <tr>\r\n"
-      "          <td>"+field->name+"&nbsp;</td>\r\n"
-      "          <td style='width:90%;'><input type='text' name='"+field->name+"' id='"+field->name+"' maxlength='"+field->len+"' value='"+val+"' style='width:100%;'></td>\r\n"
-      "          <td><b onclick='document.getElementById(\""+field->name+"\").value=\""+field->dft+"\"'>&nbsp;&#8635;</b></td>\r\n"
-      "        </tr>\r\n" 
-      "        <tr> <td></td> <td><small>"+field->extra+"</small></td> </tr>\r\n" 
-      "        <tr> <td>&nbsp;</td> </tr>\r\n";
+    if( field->len==0 ) {
+      body+= String("\r\n")+
+        "        <tr> <th colspan='3'>"+field->name+"&nbsp;</th> </tr>\r\n" 
+        "        <tr> <td colspan='3'><small>"+field->extra+"</small></th> </tr>\r\n"; 
+    } else {
+      char val[NVM_MAX_LENZ];
+      _nvm()->get(field->name,val);
+      body += String("") +
+        "        <tr>\r\n"
+        "          <td>"+field->name+"&nbsp;</td>\r\n"
+        "          <td style='width:90%;'><input type='text' name='"+field->name+"' id='"+field->name+"' maxlength='"+field->len+"' value='"+val+"' style='width:100%;'></td>\r\n"
+        "          <td><b onclick='document.getElementById(\""+field->name+"\").value=\""+field->dft+"\"' title='Reset to default'>&nbsp;&#8635;</b></td>\r\n"
+        "        </tr>\r\n" 
+        "        <tr> <td></td> <td><small>"+field->extra+"</small></td> </tr>\r\n";
+    }
+    if( field->extra[strlen(field->extra)-1]==' ' )
+      body += "        <tr> <td>&nbsp;</td> </tr>\r\n";      
     field++;
   }
-  body += "        <tr> <td><input class='but' type='submit' value='Save'></td> </tr>\r\n      </table><form>\r\n    </div>\r\n";
+  body += "        <tr> <td><input class='but' type='submit' value='Save' title='Save and restart'></td> </tr>\r\n      </table><form>\r\n    </div>\r\n";
 
   _websrv->send(200,"text/html",head(_appname)+body1(_appname,"Edit configuration")+body+body2());
 }
 
 
 void Cfg::_handle_save(void) {
-  LOGUSR("web: '%s'\n",_websrv->uri().c_str() );  
+  LOGUSR("web: '%s'\n",_websrv->uri().c_str() ); 
   LOGDBG("web: %d args\n",_websrv->args() );                            
   String list="";
   for( int i=0; i<_websrv->args(); i++) {

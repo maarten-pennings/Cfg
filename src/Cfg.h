@@ -160,7 +160,13 @@ Also note that there is no input checking by Cfg, except that when the user
 enters too long a string, this is truncated to the length specified in the 
 fields array.
 
+From the fields, also the web page is generated. There are two "mark up" features.
+A field with a length of 0 generates a header (from name) and a sub-header (from extra).
+When the the extra field ends in a space, the web page has a white-line below the item.
+
+
 REVISION HISTORY
+ v1.5.0  20200307  Added headings and tooltips to the web page
  v1.4.0  20170521  Added tot github; some small updates to comments
  v1.3.0  20170521  Fix: mac address in ssid, new websrv, more LOGUSR for websrv
  v1.2.0  20170504  Added CfgMsg example; small DBG fixes, new CRLL handling
