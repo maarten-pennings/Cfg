@@ -84,6 +84,9 @@ There are [examples](examples)
 - The application [cfgmsg](examples/cfgmsg) has ssid and password as configuration parameters.  
   On startup, it connects to WiFi using the configured ssid/password.  
   Then, it starts a webserver. Each request (URL) send to the server is printed on the console.
+- The application [cfgtest](examples/cfgtest) has a large set of configuration parameters.
+  It illustrates how to more easily test a larger web page.
+  And demo's web page markup features (headings, white lines, html features like bold/links)  .
   
 
 ## CfgTime in detail
