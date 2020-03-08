@@ -234,7 +234,8 @@ void Cfg::_handle_config(void) {
         "        <tr>\r\n"
         "          <td>"+field->name+"&nbsp;</td>\r\n"
         "          <td style='width:90%;'><input type='text' name='"+field->name+"' id='"+field->name+"' maxlength='"+field->len+"' value='"+val+"' style='width:100%;'></td>\r\n"
-        "          <td><b onclick='document.getElementById(\""+field->name+"\").value=\""+field->dft+"\"' title='Reset to default'>&nbsp;&#8635;</b></td>\r\n"
+        "          <td><b onclick='document.getElementById(\""+field->name+"\").value=\""+val+"\"' title='Reset to current'>&nbsp;&nbsp;&#x21B6;</b></td>\r\n"
+        "          <td><b onclick='document.getElementById(\""+field->name+"\").value=\""+field->dft+"\"' title='Reset to default'>&#x2913;</b></td>\r\n"
         "        </tr>\r\n" 
         "        <tr> <td></td> <td><small>"+field->extra+"</small></td> </tr>\r\n";
     }
@@ -251,6 +252,7 @@ void Cfg::_handle_config(void) {
 void Cfg::_handle_save(void) {
   LOGUSR("web: '%s'\n",_websrv->uri().c_str() ); 
   LOGDBG("web: %d args\n",_websrv->args() );                            
+
   String list="";
   for( int i=0; i<_websrv->args(); i++) {
     String name = _websrv->argName(i);
@@ -269,7 +271,7 @@ void Cfg::_handle_save(void) {
   }  
   
   if( list=="" ) list="Nothing to save."; else list="Saving "+list;
-  String body= "    <div class='sub'>"+list+".<br/>Will restart shortly.</div>\r\n";
+  String body= "    <div class='sub'>"+list+".<br/><br/>Will restart shortly.</div>\r\n";
   _websrv->send(200,"text/html",head(_appname)+body1(_appname,"Saving configuration")+body+body2());
   _restart=true;
 }

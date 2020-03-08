@@ -166,6 +166,7 @@ When the the extra field ends in a space, the web page has a white-line below th
 
 
 REVISION HISTORY
+ v1.6.0  20200308  Added undo next to reset
  v1.5.0  20200307  Added headings and tooltips to the web page
  v1.4.0  20170521  Added tot github; some small updates to comments
  v1.3.0  20170521  Fix: mac address in ssid, new websrv, more LOGUSR for websrv
