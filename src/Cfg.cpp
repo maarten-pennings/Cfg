@@ -9,9 +9,9 @@
 #include "Cfg.h"
 
 
-#define CFG_LOGPREFIX   "Cfg" // The start of all serial prints of Cfg
-#define CFG_FLASH_SETUP   50  // The time between ledpin flashes in setup() - user to press button
-#define CFG_FLASH_LOOP   999  // The time between ledpin flashes in loop() - user to connect with web browser
+#define CFG_LOGPREFIX   "cfg " // The start of all serial prints of Cfg
+#define CFG_FLASH_SETUP   50   // The time between ledpin flashes in setup() - user to press button
+#define CFG_FLASH_LOOP   999   // The time between ledpin flashes in loop() - user to connect with web browser
 
 
 // Shorthand for prints to the serial port, taking _seriallvl into account
@@ -73,7 +73,7 @@ Cfg::~Cfg(void) {
 
 void Cfg::check(int cfgwait, int butpin) {
   // Welcome
-  LOGUSR("Press button on pin %d to enter configuration mode\n", butpin );
+  LOGUSR("press button on pin %d to enter configuration mode\n", butpin );
   // Configure pins
   if( _ledpin>=0 ) pinMode(_ledpin, OUTPUT);
   pinMode(butpin, INPUT);
@@ -133,7 +133,7 @@ static String mac(int len=WL_MAC_ADDR_LENGTH, bool soft=false) {
 
 
 void Cfg::setup(void) {
-  LOGUSR("Entering configuration mode\n");
+  LOGUSR("entering configuration mode\n");
   // Compose SSID
   String name = String(_appname) + "-" + mac(3);
   // Start Access Point
@@ -149,11 +149,11 @@ void Cfg::setup(void) {
   _websrv->on("/restart" , [this](){this->_handle_restart(); } );
   _websrv->onNotFound(     [this](){this->_handle_404(); } );
   _websrv->begin();
-  LOGUSR("Join WiFi '%s' (open)\n",name.c_str());
+  LOGUSR("join WiFi '%s' (open)\n",name.c_str());
   // Start dns on standard port (53)
   _dnssrv = new DNSServer();
   _dnssrv->start(53, "*", ip);
-  LOGUSR("Then browse to any page (e.g. '%s')\n",ip.toString().c_str());
+  LOGUSR("then browse to any page (e.g. '%s')\n",ip.toString().c_str());
 }
 
 
@@ -165,7 +165,7 @@ void Cfg::loop(void) {
   if( _restart ) {
     WiFi.disconnect();
     WiFi.softAPdisconnect(true);
-    LOGUSR("Restart will now be invoked...\n");
+    LOGUSR("restart will now be invoked...\n");
     delay(1000);
     ESP.restart();
     return;
@@ -260,11 +260,11 @@ void Cfg::_handle_save(void) {
     LOGDBG("web: arg[%d/'%s'] = '%s'\n",i,name.c_str(),val.c_str() );  
     int ix= _nvm()->find(name.c_str());
     if( ix==-1 ) {
-      LOGUSR("Ignored: '%s' = '%s'\n",name.c_str(),val.c_str());       
+      LOGUSR("ignored: '%s' = '%s'\n",name.c_str(),val.c_str());       
     } else {
       _nvm()->put( ix, val.c_str());
       memcpy(_vals[ix],val.c_str(),NVM_MAX_LENZ);
-      LOGUSR("Saved: '%s' = '%s'\n", name.c_str(), val.c_str() );
+      LOGUSR("saved: '%s' = '%s'\n", name.c_str(), val.c_str() );
       if( list!="") list+=", ";
       list+="<i>"+name+"</i>"; 
     }
