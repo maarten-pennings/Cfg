@@ -166,6 +166,7 @@ When the the extra field ends in a space, the web page has a white-line below th
 
 
 REVISION HISTORY
+ v1.8.0  20220427  Fixed D3/D4 missing
  v1.6.0  20200308  Added undo next to reset
  v1.5.0  20200307  Added headings and tooltips to the web page
  v1.4.0  20170521  Added tot github; some small updates to comments
@@ -184,6 +185,15 @@ REVISION HISTORY
 #define CFG_SERIALLVL_NON  0 // Cfg will not print to Serial
 #define CFG_SERIALLVL_USR  1 // Cfg will only print user messages
 #define CFG_SERIALLVL_DBG  2 // Cfg will print debug/trace messages too
+
+
+// Not all ESP8266 boards have D3 and D4 defined
+#ifndef D3
+#define D3 0
+#endif
+#ifndef D4
+#define D4 0
+#endif
 
 
 extern NvmField CfgFieldsDefault[];
