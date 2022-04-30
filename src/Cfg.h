@@ -1,9 +1,20 @@
-/*
-  Cfg.h - Library for configuring an ESP8266 app
-  Created by Maarten Pennings 2017 April 16
-*/
+//Cfg.h - Library for configuring an ESP8266 app, created by Maarten Pennings 2017 April 16
 #ifndef _CFG_H_
 #define _CFG_H_
+/*
+REVISION HISTORY
+ v1.9.0  20220430  Added CFG_VERSION
+ v1.8.0  20220427  Fixed D3/D4 missing
+ v1.7.0  20200607  lowercase messages
+ v1.6.0  20200308  Added undo next to reset
+ v1.5.0  20200307  Added headings and tooltips to the web page
+ v1.4.0  20170521  Added tot github; some small updates to comments
+ v1.3.0  20170521  Fix: mac address in ssid, new websrv, more LOGUSR for websrv
+ v1.2.0  20170504  Added CfgMsg example; small DBG fixes, new CRLL handling
+ v1.1.0  20170427  Fix: urldecode on webvalues. New: default buttons on webpage. More efficient string handling.
+ v1.0.0  20170416  Initial version
+*/
+#define CFG_VERSION "1.9.0" // also in library.properties
 
 
 /*
@@ -163,19 +174,8 @@ fields array.
 From the fields, also the web page is generated. There are two "mark up" features.
 A field with a length of 0 generates a header (from name) and a sub-header (from extra).
 When the the extra field ends in a space, the web page has a white-line below the item.
-
-
-REVISION HISTORY
- v1.8.0  20220427  Fixed D3/D4 missing
- v1.6.0  20200308  Added undo next to reset
- v1.5.0  20200307  Added headings and tooltips to the web page
- v1.4.0  20170521  Added tot github; some small updates to comments
- v1.3.0  20170521  Fix: mac address in ssid, new websrv, more LOGUSR for websrv
- v1.2.0  20170504  Added CfgMsg example; small DBG fixes, new CRLL handling
- v1.1.0  20170427  Fix: urldecode on webvalues. New: default buttons on webpage. More efficient string handling.
- v1.0.0  20170424  Initial version
 */
- 
+
 
 #include <DNSServer.h>
 #include <ESP8266WebServer.h>
