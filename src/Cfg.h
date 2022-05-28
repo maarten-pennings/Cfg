@@ -3,6 +3,7 @@
 #define _CFG_H_
 /*
 REVISION HISTORY
+ v1.10.0 20220528  Cfg uses less memory
  v1.9.0  20220430  Added CFG_VERSION
  v1.8.0  20220427  Fixed D3/D4 missing
  v1.7.0  20200607  lowercase messages
@@ -14,7 +15,7 @@ REVISION HISTORY
  v1.1.0  20170427  Fix: urldecode on webvalues. New: default buttons on webpage. More efficient string handling.
  v1.0.0  20170416  Initial version
 */
-#define CFG_VERSION "1.9.0" // also in library.properties
+#define CFG_VERSION "1.10.0" // also in library.properties
 
 
 /*

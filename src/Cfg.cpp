@@ -51,7 +51,8 @@ Nvm* Cfg::_nvm(void) {
     int count = _nvm_->count();
     _vals = new char*[count];
     for( int ix=0; ix<count; ix++ ) {
-      _vals[ix]= new char[NVM_MAX_LENZ];
+      _vals[ix]= new char[ _fields[ix].len + 1 ]; // was NVM_MAX_LENZ
+      //_vals[ix]= new char[ NVM_MAX_LENZ ];
       _nvm_->get(ix,_vals[ix]);
     }
     // _nvm_->dump();
@@ -263,7 +264,9 @@ void Cfg::_handle_save(void) {
       LOGUSR("ignored: '%s' = '%s'\n",name.c_str(),val.c_str());       
     } else {
       _nvm()->put( ix, val.c_str());
-      memcpy(_vals[ix],val.c_str(),NVM_MAX_LENZ);
+      memcpy(_vals[ix], val.c_str(), _fields[ix].len + 1 ); // was NVM_MAX_LENZ
+      _vals[ix][_fields[ix].len]='\0'; // ensure truncation
+      //memcpy(_vals[ix], val.c_str(), NVM_MAX_LENZ );
       LOGUSR("saved: '%s' = '%s'\n", name.c_str(), val.c_str() );
       if( list!="") list+=", ";
       list+="<i>"+name+"</i>"; 
